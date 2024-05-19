@@ -1,10 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+List<String> items = [];
 
 class WeekSchedules extends StatelessWidget {
   const WeekSchedules({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Column();
+    // ignore: prefer_const_constructors
+    return Column();
   }
 }

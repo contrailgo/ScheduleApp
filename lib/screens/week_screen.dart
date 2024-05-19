@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_schedule_app/services/api_service.dart';
+import 'package:flutter_schedule_app/widgets/oneline.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,7 +23,7 @@ class _WeekScreenState extends State<WeekScreen> {
     String educationCode = '';
     String schoolCode = '';
     String schoolName = '학교 이름';
-
+    List perios = ['교시', '1', '2', '3', '4', '5', '6', '7'];
     Future initPrefs() async {
       prefs = await SharedPreferences.getInstance();
       schoolNumber = prefs.getString('schoolNumber')!;
@@ -53,6 +55,7 @@ class _WeekScreenState extends State<WeekScreen> {
     //TODO push되고 초기설정 발동되게하기
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: SliderDrawer(
         sliderOpenSize: 150,
@@ -100,7 +103,15 @@ class _WeekScreenState extends State<WeekScreen> {
                 ),
               );
             } else {
-              return const WeekSchedules(); // 여기다 꾸미면됨
+              return Column(
+                children: [
+                  for (var i in perios)
+                    oneline(
+                      perio: i,
+                    ),
+                  for (var schedule in snapshot.data!) WeekSchedules(),
+                ],
+              ); // 여기다 꾸미면됨
             }
           },
         ),
