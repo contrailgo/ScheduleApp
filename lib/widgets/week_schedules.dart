@@ -1,13 +1,124 @@
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 
-List<String> items = [];
-
 class WeekSchedules extends StatelessWidget {
-  const WeekSchedules({super.key});
+  final String peroid;
+  final String schoolContent;
+  final List getweekdays;
+
+  const WeekSchedules({
+    super.key,
+    required this.peroid,
+    required this.schoolContent,
+    required this.getweekdays,
+  });
 
   @override
   Widget build(BuildContext context) {
-    // ignore: prefer_const_constructors
-    return Column();
+    return Column(
+      children: [
+        Row(
+          children: [
+            Flexible(
+              flex: 2,
+              child: Stack(
+                children: [
+                  Transform.translate(
+                    offset: const Offset(3, 3),
+                    child: DottedBorder(
+                      borderPadding: const EdgeInsets.all(0),
+                      strokeWidth: 2,
+                      dashPattern: const [6, 3],
+                      radius: const Radius.circular(10),
+                      borderType: BorderType.RRect,
+                      child: const SizedBox(
+                        height: 46,
+                        width: 96,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    height: 50,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.6),
+                          offset: const Offset(2, 3),
+                          blurRadius: 1,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                      color: Colors.white,
+                      border: Border.all(),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Spacer(
+              flex: 1,
+            ),
+            Flexible(
+              flex: 4,
+              child: Stack(
+                children: [
+                  Transform.translate(
+                    offset: const Offset(3, 3),
+                    child: DottedBorder(
+                      borderPadding: const EdgeInsets.all(0),
+                      strokeWidth: 2,
+                      dashPattern: const [6, 3],
+                      radius: const Radius.circular(10),
+                      borderType: BorderType.RRect,
+                      child: const SizedBox(
+                        height: 46,
+                        width: 171,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    height: 50,
+                    width: 175,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.6),
+                          offset: const Offset(2, 3),
+                          blurRadius: 1,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                      color: Colors.white,
+                      border: Border.all(),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                    child: Center(
+                      child: Text(
+                        schoolContent,
+                        style: const TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 35,
+        ),
+      ],
+    );
   }
 }

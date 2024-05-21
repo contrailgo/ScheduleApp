@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_schedule_app/services/api_service.dart';
 import 'package:flutter_schedule_app/widgets/oneline.dart';
 import 'package:flutter_slider_drawer/flutter_slider_drawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/drawer_list_view.dart';
+
 import '../widgets/week_schedules.dart';
 
 class WeekScreen extends StatefulWidget {
@@ -103,15 +103,30 @@ class _WeekScreenState extends State<WeekScreen> {
                 ),
               );
             } else {
-              return Column(
+              return Row(
                 children: [
-                  for (var i in perios)
-                    oneline(
-                      perio: i,
+                  for (var schedule in getweekdays())
+                    Row(
+                      children: [
+                        for (var schedule in snapshot.data!)
+                          WeekSchedules(
+                            peroid: schedule.perio,
+                            schoolContent: schedule.classContent,
+                            getweekdays: schedule.date,
+                          ),
+                      ],
                     ),
-                  for (var schedule in snapshot.data!) WeekSchedules(),
+                  Column(
+                    children: [
+                      for (var i in perios)
+                        oneline(
+                          perio: i,
+                        ),
+                    ],
+                  )
                 ],
-              ); // 여기다 꾸미면됨
+              );
+              // 여기다 꾸미면됨
             }
           },
         ),
